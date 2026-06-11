@@ -14,7 +14,6 @@ on:
       - master
 
 jobs:
-
   test-rust:
     # NOTE: This name appears in GitHub's Checks API.
     name: test-rust
@@ -44,7 +43,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install gcc-multilib clang-11
+          sudo apt-get install gcc-multilib clang-18
 
       - name: Set up Rust
         run: rustup show
@@ -53,4 +52,4 @@ jobs:
         run: cargo build --target x86_64-fortanix-unknown-sgx
         env:
           CFLAGS_x86_64_fortanix_unknown_sgx: -isystem/usr/include/x86_64-linux-gnu -mlvi-hardening -mllvm -x86-experimental-lvi-inline-asm-hardening
-          CC_x86_64_fortanix_unknown_sgx: clang-11
+          CC_x86_64_fortanix_unknown_sgx: clang-18

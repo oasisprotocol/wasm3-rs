@@ -5,6 +5,10 @@
 #[allow(unused_extern_crates)]
 extern crate rs_libc;
 
+// Required to provide symbols not provided by the `rs_libc` crate.
+#[cfg(target_env = "sgx")]
+mod libc_shims;
+
 use std::{
     any::Any,
     boxed::Box,
